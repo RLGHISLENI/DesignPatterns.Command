@@ -1,4 +1,5 @@
 ﻿using DesignPatterns.Application;
+using DesignPatterns.Command.Application;
 using DesignPatterns.Domain.Commands;
 using DesignPatterns.Domain.Commands.MathOperations;
 using DesignPatterns.Domain.Entities;
@@ -41,6 +42,19 @@ namespace DesignPatterns.Command
             var divisionByZeroCommand = (State)receiver.Action(new DivisionCommand(2022, 0));
             Console.WriteLine($"State: {divisionByZeroCommand.StatusCode}-{divisionByZeroCommand.Message}");
             Console.WriteLine();
+
+            Console.ReadKey();
+
+            var invoker = new Invoker(
+                new AdditionCommand(10, 20),
+                new SubtractionCommand(45, 39),
+                new MultiplicationCommand(42, 17),
+                new DivisionCommand(7, 9));
+
+            invoker.Addition();
+            invoker.Subtraction();
+            invoker.Multiplication();
+            invoker.Dvision();
 
             Console.ReadKey();
         }
